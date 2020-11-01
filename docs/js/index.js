@@ -5,7 +5,7 @@ const backToTopDom = $("#back_to_top"); // 回到顶部
 const defaultSidebarName = "default"; // 默认文件夹
 const defaultContentName = "README"; // 默认页面
 const sidebarPrefix = "/sidebars/sidebar-"; // 侧边导航前缀
-const contentPrefix = "/docs/"; // 页面前缀
+const contentPrefix = "/content/"; // 页面前缀
 
 window.addEventListener("hashchange", init);
 
@@ -21,7 +21,11 @@ function getHash() {
 
   return {
     nav: nav || defaultSidebarName,
-    anchor: decodeURIComponent(anchorArr.join("/")), // 有可能为空字符串，所以后面要判断
+    /**
+     * 页面锚点
+     * 有可能为空字符串，所以后面要判断
+     */
+    anchor: decodeURIComponent(anchorArr.join("/")), 
   };
 }
 
@@ -100,7 +104,8 @@ function initSideBar() {
           location.hash = menuList[currentHashIndex + 1];
         });
       }
-
+      // 初始化回到顶部
+      initBackToTopButton()
     }
 
     router();
@@ -179,12 +184,13 @@ function createCatlog(_markedData) {
   return _catlogHtml;
 }
 
-
-function init_back_to_top_button() {
-  $(ditto.back_to_top_id).show();
-  $(ditto.back_to_top_id).on("click", goTop);
+// 初始化回到顶部
+function initBackToTopButton() {
+  backToTopDom.show();
+  backToTopDom.on("click", goTop);
 }
 
+// 回到顶部
 function goTop(e) {
   if (e) e.preventDefault();
   $("html, body").animate(
