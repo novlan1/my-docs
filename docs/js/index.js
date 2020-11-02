@@ -1,6 +1,7 @@
 const contentDom = $("#content"); // 内容
 const sidebarDom = $("#sidebar-inner"); // 侧边导航
 const backToTopDom = $("#back_to_top"); // 回到顶部
+const backToHome = $('#backToHome'); // 回到首页
 
 const defaultSidebarName = "default"; // 默认文件夹
 const defaultContentName = "README"; // 默认页面
@@ -8,6 +9,7 @@ const sidebarPrefix = "sidebars/sidebar-"; // 侧边导航前缀
 const contentPrefix = "content/"; // 页面前缀
 
 window.addEventListener("hashchange", init);
+backToHome.on('click', onBindBakToHome)
 
 let currentHash = ""; // 当前页面的hash，不含包页面内的锚点
 let loadingPage = false // 正在加载页面
@@ -27,6 +29,11 @@ function getHash() {
      */
     anchor: decodeURIComponent(anchorArr.join("/")), 
   };
+}
+
+function onBindBakToHome(e) {
+  e.stopPropagation()
+  location.hash = '#'
 }
 
 // 获取文档所有页面
