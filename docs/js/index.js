@@ -4,7 +4,7 @@ const backToTopDom = $("#back_to_top"); // 回到顶部
 
 const defaultSidebarName = "default"; // 默认文件夹
 const defaultContentName = "README"; // 默认页面
-const sidebarPrefix = "../sidebars/sidebar-"; // 侧边导航前缀
+const sidebarPrefix = "sidebars/sidebar-"; // 侧边导航前缀
 const contentPrefix = "/content/"; // 页面前缀
 
 window.addEventListener("hashchange", init);
